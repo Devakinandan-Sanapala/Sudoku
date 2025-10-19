@@ -3,7 +3,6 @@ from tkinter import messagebox, ttk
 import random
 import time
 
-# ---------------- Sudoku Solver ----------------
 def is_valid(board, row, col, num):
     size = len(board)
     for i in range(size):
@@ -31,7 +30,6 @@ def solve_sudoku(board):
                 return False
     return True
 
-# ---------------- Puzzle Generator ----------------
 def generate_puzzle(size=9, difficulty='easy'):
     board = [[0 for _ in range(size)] for _ in range(size)]
     n = int(size ** 0.5)
@@ -62,7 +60,6 @@ def remove_cells(board, difficulty):
             board[i][j] = 0
             remove_count -= 1
 
-# ---------------- GUI ----------------
 class SudokuGUI:
     def __init__(self, root):
         self.root = root
@@ -124,13 +121,12 @@ class SudokuGUI:
                 if board[i][j] != 0:
                     self.entries[i][j].insert(0, str(board[i][j]))
 
-    # ---------------- Features ----------------
     def check_cell(self, row, col):
         val = self.entries[row][col].get()
         if val.isdigit():
             num = int(val)
             board = self.get_board()
-            board[row][col] = 0  # Temporarily remove for validation
+            board[row][col] = 0  
             if not is_valid(board, row, col, num):
                 self.flash_red(self.entries[row][col])
 
